@@ -4,9 +4,9 @@
         <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="users index large-9 medium-8 columns content">
+<div class="content table-responsive">
     <h3><?= __('Users') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-hover table-row-anchor col-xs-12">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -42,6 +42,5 @@
             <?= $this->Paginator->numbers() ?>
             <?= $this->Paginator->next(__('next') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>
