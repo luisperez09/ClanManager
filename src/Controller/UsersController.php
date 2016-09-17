@@ -39,6 +39,24 @@ class UsersController extends AppController
         $response_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
         $this->set(compact('response', 'response_status'));
+
+        $highest_donation = $response['memberList'][0]['donations'];
+        $lowest_donation = $response['memberList'][0]['donations'];
+
+        foreach ($response['memberList'] as $key => $member) {
+            if ($member['donations'] > $highest_donation){
+                $highest_donation = $member['donations'];
+                $highest_donor = $member['name'];
+                $highest_donor_tag = $member['tag'];
+            }
+            if ($member['donations'] < $lowest_donation) {
+                $lowest_donation =  $member['donations'];
+                $lowest_donor = $member['name'];
+                $lowest_donor_tag = $member['tag'];
+            }
+        }
+
+        $this->set(compact('highest_donor', 'highest_donor_tag', 'lowest_donor', 'lowest_donor_tag'));
     }
 
     /**
