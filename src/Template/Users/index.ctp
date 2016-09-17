@@ -1,46 +1,52 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="content table-responsive">
-    <h3><?= __('Users') ?></h3>
-    <table class="table table-hover table-row-anchor col-xs-12">
+<div class="container-fluid">
+    <h3><?= __('Miembros') ?></h3>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col">Posición</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Donados</th>
+                <th scope="col">Recibidos</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
-                <td><?= h($user->name) ?></td>
-                <td><?= h($user->email) ?></td>
-                <td><?= h($user->password) ?></td>
-                <td><?= h($user->created) ?></td>
-                <td><?= h($user->modified) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+        <tbody data-link="row" class="rowlink">
+            <?php foreach ($response['memberList'] as $member): ?>
+            <?php if ($member['name'] === "sN0rk"): ?>
+                <tr class="danger">
+                <td><a href="#myModal" data-toggle="modal" data-target="#myModal">
+                    <?= $member['clanRank'] . "   " . $this->Html->image($member['league']['iconUrls']['tiny'])?></a>
                 </td>
+            <?php  else: ?>
+            <tr>
+                <td><?= $member['clanRank'] . "   " . $this->Html->image($member['league']['iconUrls']['tiny']) ?></td>
+            <?php  endif; ?>    
+                <td><?= $member['name'] ?></td>
+                <td><?= $member['donations'] ?></td>
+                <td ><?= $member['donationsReceived'] ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Snork</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Causa de suspensión</h6>
+        <p>No donó en castillo y atacó fuera de la hora estipulada.</p>
+        <hr>
+        <h5>Duración:</h6>
+        <p>2 guerras</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+      </div>
     </div>
+  </div>
 </div>
