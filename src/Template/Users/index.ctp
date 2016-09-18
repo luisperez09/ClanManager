@@ -1,31 +1,44 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav nav-tabs">
+          <li role="presentation" class="active"><a href="#">Miembros</a></li>
+          <li role="presentation"><a href="#">Sanciones</a></li>
+        </ul>
+    </div>
+</nav>
 <div class="container-fluid">
-    <h3><?= __('Miembros') ?></h3>
-    <table class="table table-striped table-hover">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">Posición</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Donados</th>
-                <th scope="col">Recibidos</th>
+                <th scope="col" class="col-xs-2"></th>
+                <th scope="col" class="col-xs-4">Nombre</th>
+                <th scope="col" class="col-xs-3">Donados</th>
+                <th scope="col" class="col-xs-3">Recibidos</th>
             </tr>
         </thead>
         <tbody data-link="row" class="rowlink">
-            <?php foreach ($response['memberList'] as $member): ?>
-            <?php if ($member['name'] === "sN0rk"): ?>
-                <tr class="danger" data-toggle="modal" data-target="#myModal">
-                <td>
-                    <?= $member['clanRank'] . "   " . $this->Html->image($member['league']['iconUrls']['tiny'])?>
-                    <?php $aux = $this->Html->image($member['league']['iconUrls']['tiny'])?>
-                </td>
-            <?php  else: ?>
-            <tr>
-                <td><?= $member['clanRank'] . "   " . $this->Html->image($member['league']['iconUrls']['tiny']) ?></td>
-            <?php  endif; ?>    
-                <td><?= $member['name'] ?></td>
-                <td <?php if ($member['tag'] == $highest_donor_tag){echo 'class="success"'; } ?>><?= $member['donations'] ?></td>
-                <td ><?= $member['donationsReceived'] ?></td>
-            </tr>
-            <?php endforeach; ?>
+            <?php foreach ($response['memberList'] as $member):
+                $tr_options = array();
+                $donations_options = array();
+
+                if ($member['name'] === "sN0rk") {
+                    $tr_options = array('class' => 'danger', 'data-toggle' => 'modal', 'data-target' =>'#myModal');
+                    $aux = $this->Html->image($member['league']['iconUrls']['tiny']);
+                }
+                if ($member['tag'] == $highest_donor_tag) {
+                    $donations_options = array('class' => 'success');
+                }
+                   
+                echo $this->Html->tableCells(
+                    [
+                        $this->Html->image($member['league']['iconUrls']['tiny']),
+                        $member['name'],
+                        [$member['donations'], $donations_options],
+                        $member['donationsReceived']
+                    ],
+                    $tr_options
+                    );
+             endforeach; ?>
         </tbody>
     </table>
 </div>
