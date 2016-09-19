@@ -38,25 +38,29 @@ class UsersController extends AppController
         $response = json_decode($result,true);
         $response_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
+
         $this->set(compact('response', 'response_status'));
+        if ($response_status == 200) {
 
-        $highest_donation = $response['memberList'][0]['donations'];
-        $lowest_donation = $response['memberList'][0]['donations'];
+            $highest_donation = $response['memberList'][0]['donations'];
+            $lowest_donation = $response['memberList'][0]['donations'];
 
-        foreach ($response['memberList'] as $key => $member) {
-            if ($member['donations'] > $highest_donation){
-                $highest_donation = $member['donations'];
-                $highest_donor = $member['name'];
-                $highest_donor_tag = $member['tag'];
+            foreach ($response['memberList'] as $key => $member) {
+                if ($member['donations'] > $highest_donation){
+                    $highest_donation = $member['donations'];
+                    $highest_donor = $member['name'];
+                    $highest_donor_tag = $member['tag'];
+                }
+                if ($member['donations'] < $lowest_donation) {
+                    $lowest_donation =  $member['donations'];
+                    $lowest_donor = $member['name'];
+                    $lowest_donor_tag = $member['tag'];
+                }
             }
-            if ($member['donations'] < $lowest_donation) {
-                $lowest_donation =  $member['donations'];
-                $lowest_donor = $member['name'];
-                $lowest_donor_tag = $member['tag'];
-            }
+
+            $this->set(compact('highest_donor', 'highest_donor_tag', 'lowest_donor', 'lowest_donor_tag'));
         }
-
-        $this->set(compact('highest_donor', 'highest_donor_tag', 'lowest_donor', 'lowest_donor_tag'));
+       
     }
 
     /**

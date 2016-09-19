@@ -57,14 +57,7 @@ class SancionesTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
-
-        $validator
-            ->allowEmpty('description');
-
-        $validator
-            ->integer('duration')
-            ->allowEmpty('duration');
-
+    
         return $validator;
     }
 

@@ -1,35 +1,29 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Sancione'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav nav-tabs">
+          <li role="presentation" ><?= $this->Html->link('Miembros', ['controller' => 'users', 'action' => 'index']) ?></li>
+          <li role="presentation" class="active"><a href="#">Sanciones</a></li>
+          <li role="presentation"><?= $this->Html->link('+ Sanción', ['controller' => 'sanciones', 'action' => 'add']) ?></li>
+        </ul>
+    </div>
 </nav>
-<div class="sanciones index large-9 medium-8 columns content">
-    <h3><?= __('Sanciones') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+<div class="container-fluid">
+    
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('duration') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('users_id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <!-- <th scope="col"><?= $this->Paginator->sort('duration') ?></th> -->
+                <th class="col-xs-5">Sancionado</th>
+                <th class="col-xs-3">Fecha</th>
+                <th class="col-xs-4">Duración</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($sanciones as $sancione): ?>
+            <?php foreach ($sanciones as $sancion): ?>
             <tr>
-                <td><?= $this->Number->format($sancione->id) ?></td>
-                <td><?= $this->Number->format($sancione->duration) ?></td>
-                <td><?= h($sancione->created) ?></td>
-                <td><?= $sancione->has('user') ? $this->Html->link($sancione->user->name, ['controller' => 'Users', 'action' => 'view', $sancione->user->id]) : '' ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $sancione->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $sancione->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $sancione->id], ['confirm' => __('Are you sure you want to delete # {0}?', $sancione->id)]) ?>
-                </td>
+                <td><?= $sancion['user_name_string'] ?></td>
+                <td><?= $sancion['created'] ?></td>
+                <td><?= $sancion['duration'] ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

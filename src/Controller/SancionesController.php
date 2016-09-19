@@ -18,9 +18,6 @@ class SancionesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
         $sanciones = $this->paginate($this->Sanciones);
 
         $this->set(compact('sanciones'));
@@ -55,11 +52,11 @@ class SancionesController extends AppController
         if ($this->request->is('post')) {
             $sancione = $this->Sanciones->patchEntity($sancione, $this->request->data);
             if ($this->Sanciones->save($sancione)) {
-                $this->Flash->success(__('The sancione has been saved.'));
+                $this->Flash->success(__('La sanción se ha guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('The sancione could not be saved. Please, try again.'));
+                $this->Flash->error(__('No se pudo guardar la sanción. Intente de nuevo.'));
             }
         }
         $users = $this->Sanciones->Users->find('list', ['limit' => 200]);

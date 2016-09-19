@@ -1,21 +1,29 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Sanciones'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <ul class="nav nav-tabs">
+          <li role="presentation" ><?= $this->Html->link('Miembros', ['controller' => 'users', 'action' => 'index']) ?></li>
+          <li role="presentation"><?= $this->Html->link('Sanciones', ['controller' => 'sanciones', 'action' => 'index']) ?></li>
+          <li role="presentation" class="active"><a href="#">+ Sanción</a></li>
+        </ul>
+    </div>
 </nav>
-<div class="sanciones form large-9 medium-8 columns content">
+<div class="row">
     <?= $this->Form->create($sancione) ?>
-    <fieldset>
-        <legend><?= __('Add Sancione') ?></legend>
-        <?php
-            echo $this->Form->input('description');
-            echo $this->Form->input('duration');
-            echo $this->Form->input('users_id', ['options' => $users]);
-        ?>
+    <form>
+    <fieldset>       
+            <div class="form-group">
+            <?php echo $this->Form->input('description', ['label' => 'Causa de la sanción', 'class' => 'form-control', 'placeholder'=> 'Atacó tarde / No donó en castillo']); ?> 
+            </div>
+            <div class="form-group">
+                <?php 
+                    echo $this->Form->input('duration', ['label' => 'Duración', 'class' => 'form-control', 'placeholder' => '1 guerra / 3 guerras'] ); ?>
+            </div>
+            <div class="form-group">        
+                    <?php echo $this->Form->input('user_name_string', ['label' => 'Sancionado', 'class' => 'form-control', 'placeholder' => 'Nombre del infractor']);?>
+            </div>
+
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <div class="row"><?= $this->Form->submit('Guardar Sanción', ['class' => 'btn btn-success btn-lg'] ) ?></div>
     <?= $this->Form->end() ?>
+    </form>
 </div>

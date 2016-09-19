@@ -27,8 +27,7 @@ $cakeDescription = 'Clash Venezuela';
 
     <?= $this->Html->css('bootstrap.min') ?>
     <?= $this->Html->css('jasny-bootsrap.min') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    
     <?= $this->Html->css('styles.css') ?>
 
     <?= $this->Html->script('jquery-3.1.0.min') ?>
@@ -43,9 +42,6 @@ $cakeDescription = 'Clash Venezuela';
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1></h1>
-            </li>
         </ul>
         <div class="top-bar-section">
             <ul class="right">

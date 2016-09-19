@@ -2,11 +2,12 @@
       <div class="container-fluid">
         <ul class="nav nav-tabs">
           <li role="presentation" class="active"><a href="#">Miembros</a></li>
-          <li role="presentation"><a href="#">Sanciones</a></li>
+          <li role="presentation"><?= $this->Html->link('Sanciones', ['controller' => 'sanciones', 'action' => 'index']) ?></li>
+          <li role="presentation" ><?= $this->Html->link('+ Sanción', ['controller' => 'sanciones', 'action' => 'add']) ?></li>
         </ul>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="row">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -43,6 +44,7 @@
     </table>
 </div>
 
+
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -52,10 +54,10 @@
         <h4 class="modal-title" id="myModalLabel"> <?= $aux ?> Snork</h4>
       </div>
       <div class="modal-body">
-        <h5>Causa de suspensión</h6>
+        <h4>Causa de suspensión</h4>
         <p>No donó en castillo y atacó fuera de la hora estipulada.</p>
         <hr>
-        <h5>Duración:</h6>
+        <h4>Duración:</h4>
         <p>2 guerras</p>
       </div>
     </div>
