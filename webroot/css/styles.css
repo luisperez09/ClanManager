@@ -15,6 +15,6 @@ body {
 	padding-right: 10px;
 }
 
-select option:first-child {
+select.hidden-placeholder option:first-child {
 	display: none;
 }

@@ -58,7 +58,8 @@ class SancionesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create')
             ->notEmpty('description', 'Debe agregar una causa')
-            ->notEmpty('user_tag', 'Debe seleccionar un sancionado');
+            ->notEmpty('user_tag', 'Debe seleccionar un sancionado')
+            ->notEmpty('duration', 'Debe seleccionar duración de la sanción');
     
         return $validator;
     }
