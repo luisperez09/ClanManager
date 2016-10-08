@@ -41,7 +41,7 @@ class SancionesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
-            'foreignKey' => 'users_id',
+            'foreignKey' => 'users_tag',
             'joinType' => 'INNER'
         ]);
     }
@@ -56,7 +56,9 @@ class SancionesTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->allowEmpty('id', 'create')
+            ->notEmpty('description', 'Debe agregar una causa')
+            ->notEmpty('user_tag', 'Debe seleccionar un sancionado');
     
         return $validator;
     }

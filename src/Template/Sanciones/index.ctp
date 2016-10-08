@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <ul class="nav nav-tabs">
-          <li role="presentation" ><?= $this->Html->link('Miembros', ['controller' => 'users', 'action' => 'index']) ?></li>
+          <li role="presentation" ><?= $this->Html->link('<img src="https://api-assets.clashofclans.com/badges/70/bXn2nmDwrMEfheAMPcSyQR7BkFJzaddyQwGDL8TngYg.png" class="img-responsive" style="max-height:25px">', ['controller' => 'users', 'action' => 'index'], ['escape' => false]) ?></li>
           <li role="presentation" class="active"><a href="#">Sanciones</a></li>
-          <li role="presentation"><?= $this->Html->link('+ Sanción', ['controller' => 'sanciones', 'action' => 'add']) ?></li>
+          <li role="presentation"><?= $this->Html->link('<span class="glyphicon glyphicon-plus"></span>', ['controller' => 'sanciones', 'action' => 'add'], ['escape' => false]) ?></li>
         </ul>
     </div>
 </nav>
@@ -21,7 +21,7 @@
         <tbody>
             <?php foreach ($sanciones as $sancion): ?>
             <tr>
-                <td><?= $sancion['user_name_string'] ?></td>
+                <td><?= $sancion['user_name'] ?></td>
                 <td><?= $sancion['created'] ?></td>
                 <td><?= $sancion['duration'] ?></td>
             </tr>
@@ -30,10 +30,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->next(__('siguiente') . ' >') ?>
         </ul>
-        <p><?= $this->Paginator->counter() ?></p>
     </div>
 </div>

@@ -18,7 +18,7 @@ class SancionesController extends AppController
      */
     public function index()
     {
-        $sanciones = $this->paginate($this->Sanciones);
+        $sanciones = $this->paginate($this->Sanciones, ['order' => ['created' => 'DESC']]);
 
         $this->set(compact('sanciones'));
         $this->set('_serialize', ['sanciones']);
@@ -50,16 +50,19 @@ class SancionesController extends AppController
     {
         $sancione = $this->Sanciones->newEntity();
         if ($this->request->is('post')) {
+            $row = $this->Sanciones->Users->find('all', [
+                'conditions' => ['Users.tag' => $this->request->data['user_tag']]])->first();
+            $this->request->data['user_name'] = $row['name'];
             $sancione = $this->Sanciones->patchEntity($sancione, $this->request->data);
             if ($this->Sanciones->save($sancione)) {
                 $this->Flash->success(__('La sanción se ha guardado.'));
 
                 return $this->redirect(['action' => 'index']);
             } else {
-                $this->Flash->error(__('No se pudo guardar la sanción. Intente de nuevo.'));
+                $this->Flash->error(__('No se pudo guardar la sanción. Revise la informacion e intente de nuevo.'));
             }
         }
-        $users = $this->Sanciones->Users->find('list', ['limit' => 200]);
+        $users = $this->Sanciones->Users->find('list', ['limit' => 200, 'order' => ['Users.name' => 'ASC']]);
         $this->set(compact('sancione', 'users'));
         $this->set('_serialize', ['sancione']);
     }
