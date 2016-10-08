@@ -1,0 +1,20 @@
+tr.danger {
+	cursor: pointer;
+}
+body {
+	padding-top: 70px; 
+	padding-bottom: 50px;
+}
+
+.submit {
+	text-align: center;
+}
+
+.form-group {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+select option:first-child {
+	display: none;
+}
