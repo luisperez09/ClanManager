@@ -34,7 +34,10 @@ class UsersTable extends Table
 
         $this->table('users');
         $this->displayField('name');
-        $this->primaryKey('id');
+        $this->primaryKey('tag');
+        $this->hasMany('sanciones', [
+            'foreignKey' => 'user_tag'
+            ]);
 
         $this->addBehavior('Timestamp');
     }
