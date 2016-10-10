@@ -59,7 +59,7 @@ class UsersController extends AppController
                     } else {
                         // TODO: si el usuario existe, comprobar estado de sanción y setearlo al view
                         if (!empty($row['sanciones'])) {
-                            $response['memberList'][$key]['sancion_data'] = $row['sanciones'][0];
+                            $response['memberList'][$key]['sancion_data'] = end($row['sanciones']);
                             $response['memberList'][$key]['sancionado'] = true;
                         } else {
                             $response['memberList'][$key]['sancionado'] = false;
