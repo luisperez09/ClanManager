@@ -18,3 +18,7 @@ body {
 select.hidden-placeholder option:first-child {
 	display: none;
 }
+
+.paginator {
+	text-align: center;
+}

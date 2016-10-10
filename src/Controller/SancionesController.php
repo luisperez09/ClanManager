@@ -18,7 +18,7 @@ class SancionesController extends AppController
      */
     public function index()
     {
-        $sanciones = $this->paginate($this->Sanciones, ['order' => ['created' => 'DESC']]);
+        $sanciones = $this->paginate($this->Sanciones, ['order' => ['created' => 'DESC'], 'limit' => 12]);
 
         $this->set(compact('sanciones'));
         $this->set('_serialize', ['sanciones']);

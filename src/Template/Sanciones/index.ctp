@@ -7,7 +7,7 @@
         </ul>
     </div>
 </nav>
-<div class="container-fluid">
+<div class="row">
     
     <table class="table table-striped">
         <thead>
@@ -30,9 +30,9 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('anterior')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('siguiente') . ' >') ?>
+            <?= $this->Paginator->prev('< ' . __('Recientes')) ?>
+            <?= $this->Paginator->numbers(['modulus' => 2]) ?>
+            <?= $this->Paginator->next(__('Antiguos') . ' >') ?>
         </ul>
     </div>
 </div>
