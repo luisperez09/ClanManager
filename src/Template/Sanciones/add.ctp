@@ -12,16 +12,16 @@
     <form>
         <fieldset>   
             <div class="form-group">
-             <?php  echo $this->Form->input('user_tag', ['label' => 'Sancionado', 'class' => 'form-control hidden-placeholder', 'options' => $users, 'empty' => 'Seleccione']); ?>
+             <?php  echo $this->Form->input('user_tag', ['label' => 'Sancionado', 'class' => 'form-control hidden-placeholder input-lg', 'options' => $users, 'empty' => 'Seleccione']); ?>
             </div>
 
             <div class="form-group">        
-                    <?php echo $this->Form->input('duration', ['class' => 'form-control hidden-placeholder', 'label' => 'Duración', 'type' => 'select', 'options' => ['1 guerra' => '1 guerra', '2 guerras' => '2 guerras', '3 guerras' => '3 guerras', '4 guerras' => '4 guerras', '5 guerras' => '5 guerras'], 'empty' => 'Seleccione']); ?>
+                    <?php echo $this->Form->input('duration', ['class' => 'form-control hidden-placeholder input-lg', 'label' => 'Duración', 'type' => 'select', 'options' => ['1 guerra' => '1 guerra', '2 guerras' => '2 guerras', '3 guerras' => '3 guerras', '4 guerras' => '4 guerras', '5 guerras' => '5 guerras'], 'empty' => 'Seleccione']); ?>
             </div>
 
             <div class="form-group">
               
-            <?php echo $this->Form->input('description', ['label' => 'Causa de la sanción', 'class' => 'form-control', 'placeholder'=> 'Ej: Atacó tarde / No donó en castillo']); 
+            <?php echo $this->Form->input('description', ['label' => 'Causa de la sanción', 'class' => 'form-control input-lg', 'placeholder'=> 'Ej: Atacó tarde / No donó']); 
               ?> 
             </div>
 
